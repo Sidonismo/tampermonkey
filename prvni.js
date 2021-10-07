@@ -3,7 +3,6 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
-// @grant          GM_addStyle
 // @author       You
 // @updateURL    https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
 // @downloadURL  https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
