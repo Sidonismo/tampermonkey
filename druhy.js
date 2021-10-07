@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Druhý
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.1
 // @description  try to take over the world!
 // @author       Elias S.
 // @updateURL    https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/druhy.js
