@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         První
 // @namespace    http://tampermonkey.net/
-// @version      0.2.1
+// @version      0.2
 // @description  try to take over the world!
-// @author       You
+// @author       Eliáš S.
 // @updateURL    https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
-// @downloadURL  https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
 // @match        https://antikvariat11.cz/kniha/*edit=ed
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
@@ -22,7 +21,7 @@
     //rozbor staraId
     let staraId;
     let puvodniID = signId.value;
-    if (signId.value.length <= 8 && signId.value.length > 6) {
+    if (signId.value) {
         staraId = signId.value;
     } else {
         staraId = "";
@@ -114,10 +113,8 @@
 
     signDiv.setAttribute("style", "top: 180px; left: 0px; padding: 25px 5px; font-size: 4em; animation: blinking 1s infinite;");
     signDiv.style.position = "fixed";
-    signDiv.style.color = "#cb4154";
+    signDiv.style.color = "red";
     signDiv.innerHTML = regal;
-
-    foo.appendChild(signDiv);
 
 
     //Append the element in page (in span).
@@ -206,6 +203,7 @@
     });
     fajfka.addEventListener("change", function () {
         if (this.checked) {
+            foo.appendChild(signDiv);
             localStorage.setItem("checked", true);
             signDiv.innerHTML = localStorage.getItem("regal");
             checked = true;
@@ -219,6 +217,7 @@
                 staraId;
             console.log(signId.value);
         } else {
+            if (document.querySelector("body > div:nth-child(4)")){foo.removeChild(signDiv);}
             localStorage.setItem("checked", false);
             checked = false;
             fajfka.checked = false;
@@ -227,6 +226,7 @@
     });
     console.log(fajfka.checked, checked);
     if (checked == "true" || checked == true) {
+        foo.appendChild(signDiv);
         fajfka.checked = true;
         signId.value =
             localStorage.getItem("regal") +
@@ -236,6 +236,7 @@
             " " +
             staraId;
     } else {
+        if (document.querySelector("body > div:nth-child(4)")){foo.removeChild(signDiv);}
         signId.value = puvodniID;
         fajfka.checked = false;
         checked = false;
