@@ -5,6 +5,8 @@
 // @description  try to take over the world!
 // @grant          GM_addStyle
 // @author       You
+// @updateURL    https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
+// @downloadURL  https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
 // @match        https://antikvariat11.cz/kniha/*edit=ed
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
