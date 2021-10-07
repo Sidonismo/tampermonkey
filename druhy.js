@@ -105,14 +105,13 @@
         }
     });
     element2.addEventListener("blur", function () {
-
-        console.log("Focus out");
         regal = localStorage.setItem("regal", element2.value);
         signDiv.innerHTML = localStorage.getItem("regal");
 
 
     });
     fajfka.addEventListener("change", function () {
+        foo.appendChild(signDiv);
         signDiv.innerHTML = localStorage.getItem("regal");
         if (this.checked) {
             localStorage.setItem("checked", true);
@@ -120,6 +119,7 @@
             fajfka.checked = true;
 
         } else {
+            if (document.querySelector("body > div:nth-child(4)")){foo.removeChild(signDiv);}
             localStorage.setItem("checked", false);
             checked = false;
             fajfka.checked = false;
@@ -129,9 +129,9 @@
     console.log(fajfka.checked, checked);
     if (checked == "true" || checked == true) {
         fajfka.checked = true;
-
+foo.appendChild(signDiv);
     } else {
-
+if (document.querySelector("body > div:nth-child(4)")){foo.removeChild(signDiv);}
         fajfka.checked = false;
         checked = false;
     }
