@@ -215,7 +215,6 @@
                 localStorage.getItem("inicialy") +
                 " " +
                 staraId;
-            console.log(signId.value);
         } else {
             if (document.querySelector("body > div:nth-child(4)")){foo.removeChild(signDiv);}
             localStorage.setItem("checked", false);
@@ -224,7 +223,7 @@
             signId.value = puvodniID;
         }
     });
-    console.log(fajfka.checked, checked);
+
     if (checked == "true" || checked == true) {
         foo.appendChild(signDiv);
         fajfka.checked = true;
