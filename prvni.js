@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.2
 // @description  try to take over the world!
-// @author       Eliáš S.
+// @author       You
 // @updateURL    https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/prvni.js
 // @match        https://antikvariat11.cz/kniha/*edit=ed
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -21,11 +21,6 @@
     //rozbor staraId
     let staraId;
     let puvodniID = signId.value;
-    if (signId.value) {
-        staraId = signId.value;
-    } else {
-        staraId = "";
-    }
 
     //získání data
     let d = new Date();
@@ -45,6 +40,11 @@
     let datum = den + mesic + rok;
     localStorage.setItem("datum", datum);
 
+    if (signId.value) {
+        staraId = signId.value;
+    } else {
+        staraId = "";
+    }
     // ROZPRACOVANO
     let rozpr = document.querySelector("#content > p");
     let rozprButt = document.querySelector("#content > form > div > input:nth-child(3)");
@@ -68,11 +68,10 @@
     }
     // Drahe nebo levné
     let cenaId = document.querySelector("input[name*='ed_f30_']");
-
-    // Čtvereček
+    let obsahujeDatumInic = signId.value.includes(datum+inicialy);
     let checked = localStorage.getItem("checked");
-    console.log(checked);
-
+    
+    // Čtvereček
     if (checked === null) { checked = false; } else { checked = checked; }
     if (regal === null) { regal = ""; }
     if (inicialy === null) { inicialy = ""; }
@@ -215,6 +214,7 @@
                 localStorage.getItem("inicialy") +
                 " " +
                 staraId;
+            console.log(signId.value);
         } else {
             if (document.querySelector("body > div:nth-child(4)")){foo.removeChild(signDiv);}
             localStorage.setItem("checked", false);
@@ -223,7 +223,7 @@
             signId.value = puvodniID;
         }
     });
-
+    console.log(fajfka.checked, checked);
     if (checked == "true" || checked == true) {
         foo.appendChild(signDiv);
         fajfka.checked = true;
@@ -240,6 +240,7 @@
         fajfka.checked = false;
         checked = false;
     }
+    if (checked && obsahujeDatumInic){alert('Pozor levná kniha nebo kniha od Jakuba!'); signId.value = staraId;}
         function copyToClipboard(text) {
         searchbox.value = text;
     if (window.clipboardData && window.clipboardData.setData) {
