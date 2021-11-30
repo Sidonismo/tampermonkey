@@ -33,11 +33,20 @@
         let svazky = nazev.match(/\d+Svazky\s(\d*)/gmiu)[0];
         nazev = nazev.replace(svazky, '');
 }
+    //odstranení slov z názvu, které jsou za :;-[.(
     nazev = nazev.split(':')[0];
     nazev = nazev.split(';')[0];
     nazev = nazev.split('-')[0];
     nazev = nazev.split('[')[0];
     nazev = nazev.split('.')[0];
+    nazev = nazev.split('(')[0];
+    //první tři slova
+    let nazevArr = nazev.split(' ');
+    nazev = '';
+    nazevArr = nazevArr.slice(0, 3);
+    nazevArr.forEach(function (item) {
+  nazev += item + ' ';
+});
     let autor = document.querySelector('#ed_i2').value;
 
     autor = autor.split(' ').pop();
