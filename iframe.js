@@ -6,7 +6,6 @@
 // @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/pridat-predmet?*
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @require    http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // ==/UserScript==
 
 (function() {
