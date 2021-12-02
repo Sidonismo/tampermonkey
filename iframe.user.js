@@ -70,4 +70,5 @@
     divNav.addEventListener("click", function (event) {
         iframe.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 200px; position: fixed; background-color: white; resize: vertical;");
 });
+    console.log('Zdarec!');
 })();
