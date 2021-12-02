@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iframe
 // @namespace    http://tampermonkey.net/
-// @version      0.2.3
+// @version      0.2.4
 // @description  try to take over the world!
 // @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/pridat-predmet*
