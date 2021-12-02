@@ -7,8 +7,8 @@
 // @match        https://antikvariat11.cz/pridat-predmet*
 // @require    http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @downloadURL https://gist.githubusercontent.com/Sidonismo/258729b233e334c2f14d389ec23cc871/raw/ba1d8e067e490564544589b28642a988513f9cdc/iframe_exlibri.js
-// @updateURL https://gist.githubusercontent.com/Sidonismo/258729b233e334c2f14d389ec23cc871/raw/ba1d8e067e490564544589b28642a988513f9cdc/iframe_exlibri.js
+// @downloadURL https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/iframe.js
+// @updateURL https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/iframe.js
 // ==/UserScript==
 
 
