@@ -17,7 +17,7 @@
         var ifrm = document.createElement("iframe");
         ifrm.setAttribute("name", "display");
         ifrm.setAttribute("src", url);
-        ifrm.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 300px; position: fixed; background-color: white;");
+        ifrm.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 300px; position: fixed; background-color: white; resize: vertical;");
         document.body.appendChild(ifrm);
     }
 
@@ -66,6 +66,6 @@
         //iframe.parentNode.removeChild(iframe);
 });
     divNav.addEventListener("click", function (event) {
-        iframe.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 300px; position: fixed; background-color: white;");
+        iframe.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 200px; position: fixed; background-color: white; resize: vertical;");
 });
 })();
