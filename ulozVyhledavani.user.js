@@ -1,11 +1,12 @@
 // ==UserScript==
-// @name         New Userscript
-// @namespace    http://tampermonkey.net/
-// @version      0.1
+// @name         ulozVyhledavani
+// @namespace    https://github.com/Sidonismo/tampermonkey/raw/main/ulozVyhledavani.user.js
+// @version      0.2
 // @description  try to take over the world!
-// @author       You
+// @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/kniha/*
-// @match        http://localhost:8000/*
+// @updateURL    https://github.com/Sidonismo/tampermonkey/raw/main/ulozVyhledavani.user.js
+// @downloadURL  https://github.com/Sidonismo/tampermonkey/raw/main/ulozVyhledavani.user.js
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
 // ==/UserScript==
