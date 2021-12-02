@@ -9,6 +9,7 @@
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @downloadURL https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/iframe.js
 // @updateURL https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/iframe.js
+// @grant none
 // ==/UserScript==
 
 
