@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         iframe
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
 // @version      0.2.5
 // @description  try to take over the world!
 // @author       Eliáš Sidon
