@@ -4,9 +4,12 @@
 // @version      0.1
 // @description  try to take over the world!
 // @author       Eliáš Sidon
-// @match        https://antikvariat11.cz/pridat-predmet?*
+// @match        https://antikvariat11.cz/pridat-predmet*
+// @require    http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+
 // ==/UserScript==
+
 
 (function() {
     'use strict';
@@ -55,4 +58,14 @@
 
     prepareFrame(dotaz);
     var iframe = document.querySelector('[name=display]');
+    let divAdresa = document.querySelector('#rightbar .lbox');
+    let divNav = document.querySelector('#nav-bar');
+
+    divAdresa.addEventListener("click", function (event) {
+        iframe.setAttribute("style", "position: absolute; width:0;height:0;border: 0;border: none;");
+        //iframe.parentNode.removeChild(iframe);
+});
+    divNav.addEventListener("click", function (event) {
+        iframe.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 300px; position: fixed; background-color: white;");
+});
 })();
