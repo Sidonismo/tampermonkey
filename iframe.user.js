@@ -7,8 +7,8 @@
 // @match        https://antikvariat11.cz/pridat-predmet*
 // @require    http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @downloadURL https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/iframe.js
-// @updateURL https://raw.githubusercontent.com/Sidonismo/tampermonkey/main/iframe.js
+// @downloadURL https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
+// @updateURL https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
 // @grant none
 // ==/UserScript==
 
