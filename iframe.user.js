@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         iframe
 // @namespace    http://tampermonkey.net/
-// @version      0.2.4
+// @version      0.2.5
 // @description  try to take over the world!
 // @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/pridat-predmet*
@@ -70,5 +70,4 @@
     divNav.addEventListener("click", function (event) {
         iframe.setAttribute("style", "bottom: 0px; left: 0px; width: 100%; height: 200px; position: fixed; background-color: white; resize: vertical;");
 });
-    console.log('Zdarec!');
 })();
