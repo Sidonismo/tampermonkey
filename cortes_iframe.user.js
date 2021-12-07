@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cortes_iframe
 // @namespace    https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
-// @version      0.2.6
+// @version      0.2.7
 // @description  try to take over the world!
 // @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/kniha/*?edit=ed
