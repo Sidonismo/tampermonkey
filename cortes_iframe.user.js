@@ -47,6 +47,10 @@
         let svazky = nazev.match(/\d+Svazky\s(\d*)/gmiu)[0];
         nazev = nazev.replace(svazky, '');
 }
+        if (nazev.match(/\d+Svazků\s(\d*)/gmiu)){
+        let svazky = nazev.match(/\d+Svazků\s(\d*)/gmiu)[0];
+        nazev = nazev.replace(svazky, '');
+}
     //odstranení slov z názvu, které jsou za :;-[.(
     nazev = nazev.split(':')[0];
     nazev = nazev.split(';')[0];
