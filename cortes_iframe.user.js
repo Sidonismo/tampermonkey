@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cortes_iframe
 // @namespace    https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
-// @version      0.2.7
+// @version      0.2.8
 // @description  try to take over the world!
 // @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/kniha/*?edit=ed
@@ -30,15 +30,18 @@
 
     function ziskejRok(item) {
         if (!isHidden(item)){
-              vse += item.value;
+              vse += item.value + ' ';
         }
     }
     function isHidden(el) {
     var style = window.getComputedStyle(el);
     return ((style.display === 'none') || (style.visibility === 'hidden'))
 }
-        console.log('555555555555555555555555555555555555'+vse);
-    rok = vse.match(/[12][098]\d{2}/gm)[0];
+    if (vse.match(/[12][098]\d{2}/gm)[0]){
+        rok = vse.match(/[12][098]\d{2}/gm)[0];
+} else {
+    rok = '';
+}
     if (nazev.match(/\d+Svazky\s(\d*)/gmiu)){
         let svazky = nazev.match(/\d+Svazky\s(\d*)/gmiu)[0];
         nazev = nazev.replace(svazky, '');
