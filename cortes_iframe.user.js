@@ -1,14 +1,15 @@
 // ==UserScript==
 // @name         cortes_iframe
 // @namespace    https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
-// @version      0.2.8
+// @version      0.2.6
 // @description  try to take over the world!
 // @author       Eliáš Sidon
+// @match        https://antikvariat11.cz/pridat-predmet*
 // @match        https://antikvariat11.cz/kniha/*?edit=ed
 // @require    http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @downloadURL https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
-// @updateURL https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
+// @downloadURL https://github.com/Sidonismo/tampermonkey/raw/main/cortes_iframe.user.js
+// @updateURL https://github.com/Sidonismo/tampermonkey/raw/main/cortes_iframe.user.js
 // @grant none
 // ==/UserScript==
 
