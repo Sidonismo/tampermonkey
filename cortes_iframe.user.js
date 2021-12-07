@@ -38,7 +38,7 @@
     return ((style.display === 'none') || (style.visibility === 'hidden'))
 }
         console.log('555555555555555555555555555555555555'+vse);
-    rok = vse.match(/[12][09]\d{2}/gm)[0];
+    rok = vse.match(/[12][098]\d{2}/gm)[0];
     if (nazev.match(/\d+Svazky\s(\d*)/gmiu)){
         let svazky = nazev.match(/\d+Svazky\s(\d*)/gmiu)[0];
         nazev = nazev.replace(svazky, '');
