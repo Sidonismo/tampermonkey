@@ -88,7 +88,7 @@ let autorArr = autor.split(' ').reverse();
         }
     if (autor === 'autorů'){ autor = ''}
 
-    let dotaz = 'https://exlibri.cz/prohledat-web/' + nazev + ' ' + autor + ' ' + rok;
+    let dotaz = 'https://exlibri.cz/prohledat-web/' + nazev + '*' + autor + '*' + rok;
     console.log(dotaz);
 
 
