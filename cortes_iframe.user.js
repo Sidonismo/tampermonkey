@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cortes_iframe
 // @namespace    https://github.com/Sidonismo/tampermonkey/raw/main/iframe.user.js
-// @version      0.2.9
+// @version      0.3.0
 // @description  try to take over the world!
 // @author       Eliáš Sidon
 // @match        https://antikvariat11.cz/pridat-predmet*
@@ -88,7 +88,7 @@ let autorArr = autor.split(' ').reverse();
         }
     if (autor === 'autorů'){ autor = ''}
 
-        let dotaz = 'https://exlibri.cz/prohledat-web/' + nazev + ' * ' + autor + ' * ' + rok;
+        let dotaz = 'https://exlibri.cz/prohledat-web/"' + nazev + '" * ' + autor + ' * ' + rok;
     console.log(dotaz);
 
 
