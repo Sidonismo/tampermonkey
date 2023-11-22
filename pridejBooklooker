@@ -1,4 +1,4 @@
-// ==UserScript==
+      // ==UserScript==
 // @name         pridejBookLooker
 // @namespace    http://tampermonkey.net/
 // @version      0.1
@@ -10,42 +10,42 @@
 // ==/UserScript==
 
 (function() {
-    'use strict';
-     const newButton = document.createElement("button");
-      const elem = document.querySelector("#content");
-      newButton.textContent = "Booklooker";
-      newButton.addEventListener("click", myFunction);
-      let theFirstChild = elem.firstChild;
-      elem.insertBefore(newButton, theFirstChild);
-      const putAutor = document.querySelector("#ed_i2");
-      const putTitel = document.querySelector("#sug_inp");
-      const putIsbn = document.querySelector("#ed_i5");
-      const putRok = document.querySelector("#ed_i4");
-      const putStran = document.querySelector("#ed_i6");
-      const putCena = document.querySelector("#ed_i10");
-      console.log(newButton);
-      function myFunction() {
-        navigator.clipboard
-          .readText()
-          .then((text) => {
-            console.log(text);
-            var autorMatch = text.match(/(?<=Autor\/in\s*:\n*).*/g);
-            var titelMatch = text.match(/(?<=Titel\s*:\n*)\s*.*/g);
-            var isbnMatch = text.match(/(?<=ISBN\s*:\n*).*/g);
-            var seitenMatch = text.match(/(?<=Seiten\s*:\n*).*/g);
-            console.log(isbnMatch);
-            console.log(autorMatch);
-            var rokMatch = text.match(/(?<=Erschienen\s*:\n*).*(?=.*)/g);
-            console.log(rokMatch);
-            putAutor.value = autorMatch.join("").toString().trim();
-            putTitel.value = titelMatch.join("").toString().trim();
-            putIsbn.value = isbnMatch.join("").toString().trim();
-            putRok.value = rokMatch.join("").toString().trim();
-            putStran.value = seitenMatch.join("").toString().trim();
-            putCena.value = "0";
-          })
-          .catch((err) => {
-            console.log("Failed to read clipboard contents: " + err);
-          });
-      }
+  'use strict';
+   const newButton = document.createElement("button");
+    const elem = document.querySelector("#content");
+    newButton.textContent = "Booklooker";
+    newButton.addEventListener("click", myFunction);
+    let theFirstChild = elem.firstChild;
+    elem.insertBefore(newButton, theFirstChild);
+    const putAutor = document.querySelector("#ed_i2");
+    const putTitel = document.querySelector("#sug_inp");
+    const putIsbn = document.querySelector("#ed_i5");
+    const putRok = document.querySelector("#ed_i4");
+    const putStran = document.querySelector("#ed_i6");
+    const putCena = document.querySelector("#ed_i10");
+    console.log(newButton);
+    function myFunction() {
+      navigator.clipboard
+        .readText()
+        .then((text) => {
+          console.log(text);
+          var autorMatch = text.match(/(?<=Autor\/in\s*:\n*).*/g);
+          var titelMatch = text.match(/(?<=Titel\s*:\n*)\s*.*/g);
+          var isbnMatch = text.match(/(?<=ISBN\s*:\n*).*/g);
+          var seitenMatch = text.match(/(?<=Seiten\s*:\n*).*/g);
+          console.log(isbnMatch);
+          console.log(autorMatch);
+          var rokMatch = text.match(/(?<=Erschienen\s*:\n*).*(?=.*)/g);
+          console.log(Array.isArray(autorMatch));
+          if (Array.isArray(autorMatch)){putAutor.value = autorMatch.join("").toString().trim();}
+          if (Array.isArray(titelMatch)){putTitel.value = titelMatch.join("").toString().trim();}
+          if (Array.isArray(isbnMatch)){putIsbn.value = isbnMatch.join("").toString().trim();}
+          if (Array.isArray(rokMatch)){putRok.value = rokMatch.join("").toString().trim();}
+          if (Array.isArray(seitenMatch)){putStran.value = seitenMatch.join("").toString().trim();}
+          putCena.value = "0";
+        })
+        .catch((err) => {
+          console.log("Failed to read clipboard contents: " + err);
+        });
+    }
 })();
