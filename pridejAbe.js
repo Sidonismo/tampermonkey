@@ -34,17 +34,19 @@
           console.log(autorMatch);
 
           var titelMatch = text.match(/^(.*)$/m);
-          console.log(titelMatch);
 
           if (text.match(/(?<=ISBN.).*/m)){
           var isbnMatch = text.match(/(?<=ISBN.).*/m)[0];
-          console.log(isbnMatch);
+              isbnMatch = isbnMatch.replace(/[^0-9]/g, ' ');
           putIsbn.value = isbnMatch;
           }
-
+          let rokMatch = null;
           if (text.match(/(?<=^Published.*)[12][098]\d{2}/m)){
-          var rokMatch = text.match(/(?<=^Published.*)[12][098]\d{2}/m);
-          console.log(rokMatch);
+          rokMatch = text.match(/(?<=^Published.*)[12][098]\d{2}/m);
+          }
+
+          if (text.match(/(?<=^Publication.*)[12][098]\d{2}/m)){
+          rokMatch = text.match(/(?<=^Publication.*)[12][098]\d{2}/m);
           }
           
           putAutor.value = autorMatch;
