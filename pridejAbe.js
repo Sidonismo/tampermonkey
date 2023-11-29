@@ -30,10 +30,10 @@
         .then((text) => {
           console.log(text);
 
-          var autorMatch = text.match(/^(.*)$/mg)[1];
+          var autorMatch = text.match(/\n.*/m)[0];
           console.log(autorMatch);
 
-          var titelMatch = text.match(/^(.*)$/m);
+          var titelMatch = text.match(/^(.*)$/m)[0];
 
           if (text.match(/(?<=ISBN.).*/m)){
           var isbnMatch = text.match(/(?<=ISBN.).*/m)[0];
