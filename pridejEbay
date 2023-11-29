@@ -11,6 +11,10 @@
 
 (function() {
   'use strict';
+    var autorMatch = null;
+    var titelMatch = null;
+    var rokMatch = null;
+    var seitenMatch = null;
    const newButton = document.createElement("button");
     const elem = document.querySelector("#content");
     newButton.textContent = "Ebay";
@@ -28,14 +32,34 @@
       navigator.clipboard
         .readText()
         .then((text) => {
-          console.log(text);
-          var autorMatch = text.match(/(?<=Author\n*).*/g);
-          var titelMatch = text.match(/(?<=Book Title\n*).*/g);
+          if (text.match(/(?<=Author\n*).*/g)){
+              autorMatch = text.match(/(?<=Author\n*).*/g);
+          } else if (text.match(/(?<=Autor\n*).*/g)){
+              autorMatch = text.match(/(?<=Autor\n*).*/g);
+          }
+
+          if (text.match(/(?<=Book Title\n*).*/g)){
+              titelMatch = text.match(/(?<=Book Title\n*).*/g);
+          } else if (text.match(/(?<=Buchtitel\n*).*/g)){
+              titelMatch = text.match(/(?<=Buchtitel\n*).*/g);
+          }
           var isbnMatch = text.match(/(?<=ISBN\n*).*/g);
-          var seitenMatch = text.match(/(?<=Number of Pages\n*).*/g);
-          console.log(isbnMatch);
-          console.log(autorMatch);
-          var rokMatch = text.match(/(?<=Publication Year\n*).*/g);
+
+          if (text.match(/(?<=Number of Pages\n*).*/g)){
+              seitenMatch = text.match(/(?<=Number of Pages\n*).*/g);
+          } else if (text.match(/(?<=Anzahl der Seiten\n*).*/g)){
+              seitenMatch = text.match(/(?<=Anzahl der Seiten\n*).*/g);
+          }
+
+
+
+          if (text.match(/(?<=Publication Year\n*).*/g)){
+              rokMatch = text.match(/(?<=Publication Year\n*).*/g);
+          } else if (text.match(/(?<=Erscheinungsjahr\n*).*/g)){
+              rokMatch = text.match(/(?<=Erscheinungsjahr\n*).*/g);
+          }
+
+          
           console.log(Array.isArray(autorMatch));
           if (Array.isArray(autorMatch)){putAutor.value = autorMatch.join("").toString().trim();}
           if (Array.isArray(titelMatch)){putTitel.value = titelMatch.join("").toString().trim();}
