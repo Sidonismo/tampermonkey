@@ -29,18 +29,27 @@
         .readText()
         .then((text) => {
           console.log(text);
+
           var autorMatch = text.match(/^(.*)$/mg)[1];
           console.log(autorMatch);
+
           var titelMatch = text.match(/^(.*)$/m);
           console.log(titelMatch);
+
+          if (text.match(/(?<=ISBN.).*/m)){
           var isbnMatch = text.match(/(?<=ISBN.).*/m)[0];
           console.log(isbnMatch);
+          putIsbn.value = isbnMatch;
+          }
+
+          if (text.match(/(?<=^Published.*)[12][098]\d{2}/m)){
           var rokMatch = text.match(/(?<=^Published.*)[12][098]\d{2}/m);
           console.log(rokMatch);
-          console.log(Array.isArray(autorMatch));
+          }
+          
           putAutor.value = autorMatch;
           putTitel.value = titelMatch;
-          putIsbn.value = isbnMatch;
+
           if (Array.isArray(rokMatch)){putRok.value = rokMatch.join("").toString().trim();}
           putCena.value = "0";
         })
