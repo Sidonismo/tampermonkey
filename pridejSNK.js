@@ -23,33 +23,31 @@
         const putRok = document.querySelector("#ed_i4");
         const putStran = document.querySelector("#ed_i6");
         const putCena = document.querySelector("#ed_i10");
-        console.log(newButton);
         function myFunction() {
           navigator.clipboard
             .readText()
             .then((text) => {
-              console.log(text);
               text = text.replace(/^\n/, '');
-              var autorMatch = text.match(/\n.*/m)[0];
-              console.log(autorMatch);
+              var autorMatch = '';
               let stran;
               let autorInfo;
               var titelMatch = text.match(/^(.*)$/m)[0];
-              console.log('ZZZZZ');
-              console.log(titelMatch);
-              titelMatch = titelMatch.split("/")[0];
-              console.log("split" + titelMatch);
-              console.log(text.match(/^(.*)$/m)[1].split("/")[1]);
-              if (text.match(/^(.*)$/m)[1].split("/")[1].split(";")) {
+              if (titelMatch.match(/;/m)) {
                 autorInfo = text.match(/^(.*)$/m)[1].split("/")[1].split(";");
-                console.log(autorInfo);
-                autorMatch = autorInfo[0].trim();
-                console.log(autorMatch);
+                titelMatch = titelMatch.split("/")[0];
+                autorMatch = autorInfo[0];
                 titelMatch += ' - ' +autorInfo.slice(1, autorInfo.length).join(' - ');
+                  titelMatch = titelMatch.replace(';','');
+              } else if (text.match(/^(.*)$/m)[1].split("/")) {
+                  autorMatch = text.match(/^(.*)$/m)[1].split("/")[1];
+                  titelMatch = titelMatch.split("/")[0];
+              } else {
+                  autorMatch = text.match(/\n.*/m)[0];
+                  titelMatch = titelMatch.split("/")[0];
               }
 
               titelMatch = titelMatch.replace(':',' -');
-              console.log(titelMatch);
+
 
               if (text.match(/(?<=ISBN\t\n).*/m)) {
                 var isbnMatch = text.match(/(?<=ISBN\t\n).*/m)[0];
@@ -68,7 +66,7 @@
               }
               if (text.match(/(?<=^Fyzický popis\t\n.*)\d*(?!s\.)/m)) {
                 stran = text.match(/(?<=^Fyzický popis\t\n.*)\d*(?!s\.)/m)[0];
-                putStran.value =  stran;
+                putStran.value = stran;
               }
 
               putAutor.value = autorMatch;
