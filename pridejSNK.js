@@ -65,7 +65,7 @@
                 rokMatch = text.match(/(?<=^Publication.*)[12][098]\d{2}/m);
               }
               if (text.match(/(?<=^Fyzický popis\t\n.*)\d*(?!s\.)/m)) {
-                stran = text.match(/(?<=^Fyzický popis\t\n.*)\d*(?!s\.)/m)[0];
+                stran = text.match(/(?<=^Fyzický popis\t\n.+)\d+(?!s\.)/m)[0];
                 putStran.value = stran;
               }
 
