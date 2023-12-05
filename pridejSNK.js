@@ -1,4 +1,4 @@
-      // ==UserScript==
+// ==UserScript==
       // @name         pridejSNK
       // @namespace    http://tampermonkey.net/
       // @version      0.1
@@ -28,6 +28,8 @@
             .readText()
             .then((text) => {
               text = text.replace(/^\n/, '');
+              text.replace(/(\r\n|\r)/gm, "");
+              console.log(text);
               var autorMatch = '';
               let stran;
               let autorInfo;
@@ -45,29 +47,31 @@
                   autorMatch = text.match(/\n.*/m)[0];
                   titelMatch = titelMatch.split("/")[0];
               }
+              if (autorMatch == undefined){
+                  autorMatch = "";
+              }
 
               titelMatch = titelMatch.replace(':',' -');
 
 
-              if (text.match(/(?<=ISBN\t\n).*/m)) {
-                var isbnMatch = text.match(/(?<=ISBN\t\n).*/m)[0];
+              if (text.match(/(?<=ISBN\s+)\d+/mgisu)) {
+                var isbnMatch = text.match(/((?:ISBN\s+)(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$/mg)[0];
                 isbnMatch = isbnMatch.replace(/[^0-9]/g, "");
                 isbnMatch = isbnMatch.replace('-', '');
                 isbnMatch = isbnMatch.replace('=', '');
                 putIsbn.value = isbnMatch;
               }
-              let rokMatch = null;
-              if (text.match(/(?<=^Vydavateľ\t\n.*)[12][098]\d{2}/m)) {
-                rokMatch = text.match(/(?<=^Vydavateľ\t\n.*)[12][098]\d{2}/m);
+              let rokMatch = "";
+              if (text.match(/(?<=^Vydavateľ\s+.+)[12][098]\d{2}/m)) {
+                rokMatch = text.match(/(?<=^Vydavateľ\s+.+)[12][098]\d{2}/m);
               }
 
-              if (text.match(/(?<=^Publication.*)[12][098]\d{2}/m)) {
-                rokMatch = text.match(/(?<=^Publication.*)[12][098]\d{2}/m);
-              }
-              if (text.match(/(?<=^Fyzický popis\t\n.*)\d*(?!s\.)/m)) {
-                stran = text.match(/(?<=^Fyzický popis\t\n\d*)\d+(?!s)/m)[0];
+              if (text.match(/(?<=Fyzický popis\s+)\d+/mgisu)) {
+                stran = text.match(/(?<=Fyzický popis\s+)\d+/mgisu)[0];
+
                 putStran.value = stran;
               }
+            console.log(stran);
 
               putAutor.value = autorMatch;
               putTitel.value = titelMatch;
