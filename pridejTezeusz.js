@@ -75,7 +75,7 @@
 
               //ROK
               if (text.match(/(?<=Rok wydania:.*)\d+/gimu)) {
-                rokMatch = text.match(/(?<=Rok wydania:.*)\d+/gimu);
+                rokMatch = text.match(/(?<=Rok wydania:.*)\d+/gimu)[0];
                 putRok.value = rokMatch;
                 console.log("rokMatch",rokMatch);
               }
