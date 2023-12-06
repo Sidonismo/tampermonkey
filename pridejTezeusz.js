@@ -75,9 +75,15 @@
 
               //ROK
               if (text.match(/(?<=Rok wydania:.*)\d+/gimu)) {
-                rokMatch = text.match(/(?<=Rok wydania:.*)\d+/gimu)[0];
-                putRok.value = rokMatch;
-                console.log("rokMatch",rokMatch);
+                console.log(text.match(/(?<=Rok wydania:.*)\d+/gimu));
+                rokMatch = text.match(/(?<=Rok wydania:.*)\d+/gimu);
+                if (rokMatch.lenght > 1) {
+                    putRok.value = rokMatch[0];
+                } else {
+                    putRok.value = rokMatch;
+                }
+
+                console.log("rokMatch",putRok.value);
               }
               putCena.value = "0";
             })
