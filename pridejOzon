@@ -63,7 +63,7 @@
 
               //ISBN
               if (text.match(/(?<=ISBN.*)[\r\n]+([^\r\n]+)/gimu)) {
-                isbnMatch = text.match(/(?<=ISBN.*)[\r\n]+([^\r\n]+)/gimu);
+                isbnMatch = text.match(/(?<=ISBN.*)[\r\n]+([^\r\n]+)/gimu)[0];
                 isbnMatch = isbnMatch.replace(/[^0-9]/g, "");
                 isbnMatch = isbnMatch.replace('-', '');
                 isbnMatch = isbnMatch.replace('=', '');
