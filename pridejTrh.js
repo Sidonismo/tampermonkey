@@ -40,7 +40,6 @@
 
               titelMatch = text.match(/(.*)/);
               putTitel.value = titelMatch[0];
-              console.log("titelMatch", titelMatch);
 
               //AUTOR
               if ( text.match(/(?<=.*(\r\n|\r|\n).+(\r\n|\r|\n)).+/gimu)) {
@@ -62,16 +61,12 @@
               }
 
               //ISBN
-              if (text.match(/(?<=ISBN.*)\d+-([xX])*/gimu)) {
-                  console.log("isbnMatch");
-                console.log("isbnMatch",text.match(/(?<=ISBN.*)\d+-([xX])*/gimu));
-                isbnMatch = text.match(/(?<=ISBN.*)\d+-([xX])*/gimu).join();
-                console.log("isbnMatch",isbnMatch);
+              if (text.match(/(?<=ISBN.*)\d+-([xX])*\d/gimu)) {
+                isbnMatch = text.match(/(?<=ISBN.*)\d+-([xX])*\d/gimu).join();
                 isbnMatch = isbnMatch.replaceAll(',', "");
                 isbnMatch = isbnMatch.replaceAll('-', '');
                 isbnMatch = isbnMatch.replaceAll('-', '');
                 putIsbn.value = isbnMatch;
-                console.log("isbnMatch",isbnMatch);
               }
 
               //ROK
