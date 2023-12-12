@@ -1,4 +1,4 @@
-      // ==UserScript==
+// ==UserScript==
 // @name         pridejEbay
 // @namespace    http://tampermonkey.net/
 // @version      0.1
@@ -11,7 +11,8 @@
 
 (function() {
   'use strict';
-    var autorMatch = null;
+    var autorMatch = '';
+    var isbnMatch = '';
     var titelMatch = null;
     var rokMatch = null;
     var seitenMatch = null;
@@ -32,40 +33,76 @@
       navigator.clipboard
         .readText()
         .then((text) => {
-          if (text.match(/(?<=Author\n*).*/g)){
-              autorMatch = text.match(/(?<=Author\n*).*/g);
-          } else if (text.match(/(?<=Autor\n*).*/g)){
-              autorMatch = text.match(/(?<=Autor\n*).*/g);
+
+
+          if (text.match(/Author[\r\n]+([^\r\n]+)/gsi)){
+              autorMatch = text.match(/Author[\r\n]+([^\r\n]+)/gsi)[0].replace('Author','');
+              putAutor.value = autorMatch;
+          } else if (text.match(/Autor[\r\n]+([^\r\n]+)/gsi)){
+              autorMatch = text.match(/Autor[\r\n]+([^\r\n]+)/gsi)[0].replace('Autor','');
+              putAutor.value = autorMatch;
+          } else if (text.match(/(?<=Authors:).+\r\n/g)){
+              autorMatch = text.match(/(?<=Authors:).+\r\n/g);
+              putAutor.value = autorMatch;
+          } else if (text.match(/(?<=Author:).+\r\n/g)){
+              autorMatch = text.match(/(?<=Author:).+\r\n/g);
+              putAutor.value = autorMatch;
+          } else if (text.match(/(?<=Autor:).+\r\n/g)){
+              autorMatch = text.match(/(?<=Autor:).+\r\n/g);
+              putAutor.value = autorMatch;
           }
 
-          if (text.match(/(?<=Book Title\n*).*/g)){
-              titelMatch = text.match(/(?<=Book Title\n*).*/g);
-          } else if (text.match(/(?<=Buchtitel\n*).*/g)){
-              titelMatch = text.match(/(?<=Buchtitel\n*).*/g);
-          }
-          var isbnMatch = text.match(/(?<=ISBN\n*).*/g);
-
-          if (text.match(/(?<=Number of Pages\n*).*/g)){
-              seitenMatch = text.match(/(?<=Number of Pages\n*).*/g);
-          } else if (text.match(/(?<=Anzahl der Seiten\n*).*/g)){
-              seitenMatch = text.match(/(?<=Anzahl der Seiten\n*).*/g);
-          }
-
-
-
-          if (text.match(/(?<=Publication Year\n*).*/g)){
-              rokMatch = text.match(/(?<=Publication Year\n*).*/g);
-          } else if (text.match(/(?<=Erscheinungsjahr\n*).*/g)){
-              rokMatch = text.match(/(?<=Erscheinungsjahr\n*).*/g);
+          if (text.match(/Title[\r\n]+([^\r\n]+)/gsi)){
+              titelMatch = text.match(/Title[\r\n]+([^\r\n]+)/gsi)[0].replace('Title','');
+              putTitel.value = titelMatch;
+          } else if (text.match(/titel[\r\n]+([^\r\n]+)/gsi)){
+              titelMatch = text.match(/titel[\r\n]+([^\r\n]+)/gsi)[0].replace('Buchtitel','');
+              putTitel.value = titelMatch;
+          } else if (text.match(/(?<=Title:).+\r\n/gi)){
+              titelMatch = text.match(/(?<=Title:).+\r\n/gi);
+              putTitel.value = titelMatch;
+          } else if (text.match(/(?<=titel:).+\r\n/gi)){
+              titelMatch = text.match(/(?<=titel:).+\r\n/gi);
+              putTitel.value = titelMatch;
           }
 
-          
-          console.log(Array.isArray(autorMatch));
-          if (Array.isArray(autorMatch)){putAutor.value = autorMatch.join("").toString().trim();}
-          if (Array.isArray(titelMatch)){putTitel.value = titelMatch.join("").toString().trim();}
-          if (Array.isArray(isbnMatch)){putIsbn.value = isbnMatch.join("").toString().trim();}
-          if (Array.isArray(rokMatch)){putRok.value = rokMatch.join("").toString().trim();}
-          if (Array.isArray(seitenMatch)){putStran.value = seitenMatch.join("").toString().trim();}
+
+          if (text.match(/ISBN[\r\n]+([^\r\n]+)/gsi))
+          {
+              console.log('Tri', text.match(/ISBN[\r\n]+([^\r\n]+)/gsi)[0].replace('ISBN',''));
+              isbnMatch = text.match(/ISBN[\r\n]+([^\r\n]+)/gsi)[0].replace('ISBN','');
+              putIsbn.value = isbnMatch;
+          }
+
+          if (text.match(/Pages[\r\n]+([^\r\n]+)/gsi)){
+              seitenMatch = text.match(/Pages[\r\n]+([^\r\n]+)/gsi)[0].replace('Pages','');
+              putStran.value = seitenMatch;
+          } else if (text.match(/Seiten[\r\n]+([^\r\n]+)/gsi)){
+              seitenMatch = text.match(/Anzahl der Seiten[\r\n]+([^\r\n]+)/gsi)[0].replace('Seiten','');
+              putStran.value = seitenMatch;
+          } else if (text.match(/(?<=pages:).+\r\n/gi)){
+              seitenMatch = text.match(/(?<=pages:).+\r\n/gi);
+              putStran.value = seitenMatch;
+          } else if (text.match(/(?<=seiten:).+\r\n/gi)){
+             seitenMatch = text.match(/(?<=seiten:).+\r\n/gi);
+              putStran.value = seitenMatch;
+          }
+
+          if (text.match(/Year[\r\n]+([^\r\n]+)/gsi)){
+              rokMatch = text.match(/Year[\r\n]+([^\r\n]+)/gsi)[0].replace('Year','');
+              putRok.value = rokMatch;
+          } else if (text.match(/jahr[\r\n]+([^\r\n]+)/gsi)){
+              rokMatch = text.match(/jahr[\r\n]+([^\r\n]+)/gsi)[0].replace('Erscheinungsjahr','');
+              putRok.value = rokMatch;
+          } else if (text.match(/(?<=year:).+\r\n/gi)){
+              rokMatch = text.match(/(?<=year:).+\r\n/gi);
+              putRok.value = rokMatch;
+          } else if (text.match(/(?<=jahr:).+\r\n/gi)){
+              rokMatch = text.match(/(?<=jahr:).+\r\n/gi);
+              putRok.value = rokMatch;
+          }
+
+
           putCena.value = "0";
         })
         .catch((err) => {
