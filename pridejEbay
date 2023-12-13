@@ -10,103 +10,130 @@
 // ==/UserScript==
 
 (function() {
-  'use strict';
-    var autorMatch = '';
-    var isbnMatch = '';
-    var titelMatch = null;
-    var rokMatch = null;
-    var seitenMatch = null;
-   const newButton = document.createElement("button");
-    const elem = document.querySelector("#content");
-    newButton.textContent = "Ebay";
-    newButton.addEventListener("click", myFunction);
-    let theFirstChild = elem.firstChild;
-    elem.insertBefore(newButton, theFirstChild);
-    const putAutor = document.querySelector("#ed_i2");
-    const putTitel = document.querySelector("#sug_inp");
-    const putIsbn = document.querySelector("#ed_i5");
-    const putRok = document.querySelector("#ed_i4");
-    const putStran = document.querySelector("#ed_i6");
-    const putCena = document.querySelector("#ed_i10");
-    console.log(newButton);
-    function myFunction() {
-      navigator.clipboard
-        .readText()
-        .then((text) => {
+    'use strict';
+      var autorMatch = '';
+      var isbnMatch = '';
+      var titelMatch = null;
+      var rokMatch = null;
+      var seitenMatch = null;
+     const newButton = document.createElement("button");
+      const elem = document.querySelector("#content");
+      newButton.textContent = "Ebay";
+      newButton.addEventListener("click", myFunction);
+      let theFirstChild = elem.firstChild;
+      elem.insertBefore(newButton, theFirstChild);
+      const putAutor = document.querySelector("#ed_i2");
+      const putTitel = document.querySelector("#sug_inp");
+      const putIsbn = document.querySelector("#ed_i5");
+      const putRok = document.querySelector("#ed_i4");
+      const putStran = document.querySelector("#ed_i6");
+      const putCena = document.querySelector("#ed_i10");
+      console.log(newButton);
+      function myFunction() {
+        navigator.clipboard
+          .readText()
+          .then((text) => {
 
 
-          if (text.match(/Author[\r\n]+([^\r\n]+)/gsi)){
-              autorMatch = text.match(/Author[\r\n]+([^\r\n]+)/gsi)[0].replace('Author','');
-              putAutor.value = autorMatch;
-          } else if (text.match(/Autor[\r\n]+([^\r\n]+)/gsi)){
-              autorMatch = text.match(/Autor[\r\n]+([^\r\n]+)/gsi)[0].replace('Autor','');
-              putAutor.value = autorMatch;
-          } else if (text.match(/(?<=Authors:).+\r\n/g)){
-              autorMatch = text.match(/(?<=Authors:).+\r\n/g);
-              putAutor.value = autorMatch;
-          } else if (text.match(/(?<=Author:).+\r\n/g)){
-              autorMatch = text.match(/(?<=Author:).+\r\n/g);
-              putAutor.value = autorMatch;
-          } else if (text.match(/(?<=Autor:).+\r\n/g)){
-              autorMatch = text.match(/(?<=Autor:).+\r\n/g);
-              putAutor.value = autorMatch;
-          }
+            if (text.match(/Author[\r\n]+([^\r\n]+)/gsi)){
+                autorMatch = text.match(/Author[\r\n]+([^\r\n]+)/gsi)[0].replace(/Author/i,'');
+                putAutor.value = autorMatch;
+            } else if (text.match(/Autor[\r\n]+([^\r\n]+)/gsi)){
+                autorMatch = text.match(/Autor[\r\n]+([^\r\n]+)/gsi)[0].replace(/Autor/i,'');
+                putAutor.value = autorMatch;
+            } else if (text.match(/(?<=Authors:).+\r\n/gsi)){
+                autorMatch = text.match(/(?<=Authors:).+\r\n/gsi);
+                putAutor.value = autorMatch;
+            } else if (text.match(/(?<=Author:).+\r\n/gsi)){
+                autorMatch = text.match(/(?<=Author:).+\r\n/gsi);
+                putAutor.value = autorMatch;
+            } else if (text.match(/(?<=Autor:).+\r\n/gsi)){
+                autorMatch = text.match(/(?<=Autor:).+\r\n/gsi);
+                putAutor.value = autorMatch;
+            } else if (text.match(/(?<=autor:*[\t\r\n\s]+).+/gsi)){
+                titelMatch = text.match(/(?<=autor:*[\t\r\n\s]+).+/gsi);
+                putTitel.value = titelMatch;
+            } else if (text.match(/(?<=author:*[\t\r\n\s]+).+/gsi)){
+                titelMatch = text.match(/(?<=author:*[\t\r\n\s]+).+/gsi);
+                putTitel.value = titelMatch;
+            }
 
-          if (text.match(/Title[\r\n]+([^\r\n]+)/gsi)){
-              titelMatch = text.match(/Title[\r\n]+([^\r\n]+)/gsi)[0].replace('Title','');
-              putTitel.value = titelMatch;
-          } else if (text.match(/titel[\r\n]+([^\r\n]+)/gsi)){
-              titelMatch = text.match(/titel[\r\n]+([^\r\n]+)/gsi)[0].replace('Buchtitel','');
-              putTitel.value = titelMatch;
-          } else if (text.match(/(?<=Title:).+\r\n/gi)){
-              titelMatch = text.match(/(?<=Title:).+\r\n/gi);
-              putTitel.value = titelMatch;
-          } else if (text.match(/(?<=titel:).+\r\n/gi)){
-              titelMatch = text.match(/(?<=titel:).+\r\n/gi);
-              putTitel.value = titelMatch;
-          }
-
-
-          if (text.match(/ISBN[\r\n]+([^\r\n]+)/gsi))
-          {
-              console.log('Tri', text.match(/ISBN[\r\n]+([^\r\n]+)/gsi)[0].replace('ISBN',''));
-              isbnMatch = text.match(/ISBN[\r\n]+([^\r\n]+)/gsi)[0].replace('ISBN','');
-              putIsbn.value = isbnMatch;
-          }
-
-          if (text.match(/Pages[\r\n]+([^\r\n]+)/gsi)){
-              seitenMatch = text.match(/Pages[\r\n]+([^\r\n]+)/gsi)[0].replace('Pages','');
-              putStran.value = seitenMatch;
-          } else if (text.match(/Seiten[\r\n]+([^\r\n]+)/gsi)){
-              seitenMatch = text.match(/Anzahl der Seiten[\r\n]+([^\r\n]+)/gsi)[0].replace('Seiten','');
-              putStran.value = seitenMatch;
-          } else if (text.match(/(?<=pages:).+\r\n/gi)){
-              seitenMatch = text.match(/(?<=pages:).+\r\n/gi);
-              putStran.value = seitenMatch;
-          } else if (text.match(/(?<=seiten:).+\r\n/gi)){
-             seitenMatch = text.match(/(?<=seiten:).+\r\n/gi);
-              putStran.value = seitenMatch;
-          }
-
-          if (text.match(/Year[\r\n]+([^\r\n]+)/gsi)){
-              rokMatch = text.match(/Year[\r\n]+([^\r\n]+)/gsi)[0].replace('Year','');
-              putRok.value = rokMatch;
-          } else if (text.match(/jahr[\r\n]+([^\r\n]+)/gsi)){
-              rokMatch = text.match(/jahr[\r\n]+([^\r\n]+)/gsi)[0].replace('Erscheinungsjahr','');
-              putRok.value = rokMatch;
-          } else if (text.match(/(?<=year:).+\r\n/gi)){
-              rokMatch = text.match(/(?<=year:).+\r\n/gi);
-              putRok.value = rokMatch;
-          } else if (text.match(/(?<=jahr:).+\r\n/gi)){
-              rokMatch = text.match(/(?<=jahr:).+\r\n/gi);
-              putRok.value = rokMatch;
-          }
+            if (text.match(/Title[\r\n]+([^\r\n]+)/gsi)){
+                titelMatch = text.match(/Title[\r\n]+([^\r\n]+)/gsi)[0].replace(/Title/i,'');
+                putTitel.value = titelMatch;
+            } else if (text.match(/titel[\r\n]+([^\r\n]+)/gsi)){
+                titelMatch = text.match(/name[\r\n]+([^\r\n]+)/gsi)[0].replace(/name/i,'');
+                putTitel.value = titelMatch;
+            } else if (text.match(/titel[\r\n]+([^\r\n]+)/gsi)){
+                titelMatch = text.match(/titel[\r\n]+([^\r\n]+)/gsi)[0].replace(/Buchtitel/i,'');
+                putTitel.value = titelMatch;
+            } else if (text.match(/(?<=Title:).+\r\n/gi)){
+                titelMatch = text.match(/(?<=Title:).+\r\n/gi);
+                putTitel.value = titelMatch;
+            } else if (text.match(/(?<=titel:).+\r\n/gi)){
+                titelMatch = text.match(/(?<=titel:).+\r\n/gi);
+                putTitel.value = titelMatch;
+            } else if (text.match(/(?<=name[\t\r\n\s]+).+/gsi)){
+                titelMatch = text.match(/(?<=name[\t\r\n\s]+).+/gsi);
+                putTitel.value = titelMatch;
+            } else if (text.match(/(?<=name:*[\t\r\n\s]+).+/gsi)){
+                titelMatch = text.match(/(?<=name:*[\t\r\n\s]+).+/gsi);
+                putTitel.value = titelMatch;
+            }
 
 
-          putCena.value = "0";
-        })
-        .catch((err) => {
-          console.log("Failed to read clipboard contents: " + err);
-        });
-    }
-})();
+            if (text.match(/ISBN[\r\n]+([^\r\n]+)/gsi))
+            {
+                console.log('Tri', text.match(/ISBN[\r\n]+([^\r\n]+)/gsi)[0].replace(/ISBN/i,''));
+                isbnMatch = text.match(/ISBN[\r\n]+([^\r\n]+)/gsi)[0].replace(/ISBN/i,'');
+                putIsbn.value = isbnMatch;
+            }
+
+            if (text.match(/Pages[\r\n]+([^\r\n]+)/gsi)){
+                seitenMatch = text.match(/Pages[\r\n]+([^\r\n]+)/gsi)[0].replace(/Pages/mgi,'');
+                putStran.value = seitenMatch;
+            } else if (text.match(/Seiten[\r\n]+([^\r\n]+)/gsi)){
+                seitenMatch = text.match(/Seiten[\r\n]+([^\r\n]+)/gsi)[0].replace(/Seiten/i,'');
+                putStran.value = seitenMatch;
+            } else if (text.match(/(?<=pages:).+\r\n/gi)){
+                seitenMatch = text.match(/(?<=pages:).+\r\n/gi);
+                putStran.value = seitenMatch;
+            } else if (text.match(/(?<=seiten:).+\r\n/gi)){
+               seitenMatch = text.match(/(?<=seiten:).+\r\n/gi);
+                putStran.value = seitenMatch;
+            } else if (text.match(/(?<=pages:*[\t\r\n\s]+).+/gsi)){
+                titelMatch = text.match(/(?<=pages:*[\t\r\n\s]+).+/gsi);
+                putTitel.value = titelMatch;
+            }
+
+            if (text.match(/Year[\r\n]+([^\r\n]+)/gsi)){
+                rokMatch = text.match(/Year[\r\n]+([^\r\n]+)/gsi)[0].replace(/Year/i,'');
+                putRok.value = rokMatch;
+            } else if (text.match(/jahr[\r\n]+([^\r\n]+)/gsi)){
+                rokMatch = text.match(/jahr[\r\n]+([^\r\n]+)/gsi)[0].replace(/Erscheinungsjahr/,'');
+                putRok.value = rokMatch;
+            } else if (text.match(/(?<=year:[\t\r\n\s]+)\d+/gsi)){
+                rokMatch = text.match(/(?<=year:[\t\r\n\s]+)\d+/gsi);
+                putRok.value = rokMatch;
+            } else if (text.match(/(?<=jahr:[\t\r\n\s]+)\d+/gsi)){
+                rokMatch = text.match(/(?<=jahr:[\t\r\n\s]+)\d+/gsi);
+                putRok.value = rokMatch;
+            } else if (text.match(/(?<=year:).+\r\n/gi)){
+                rokMatch = text.match(/(?<=year:).+\r\n/gi);
+                putRok.value = rokMatch;
+            } else if (text.match(/(?<=jahr:).+\r\n/gi)){
+                rokMatch = text.match(/(?<=jahr:).+\r\n/gi);
+                putRok.value = rokMatch;
+            } else if (text.match(/(?<=year:*[\t\r\n\s]+).+/gsi)){
+                titelMatch = text.match(/(?<=year:*[\t\r\n\s]+).+/gsi);
+                putTitel.value = titelMatch;
+            }
+
+
+            putCena.value = "0";
+          })
+          .catch((err) => {
+            console.log("Failed to read clipboard contents: " + err);
+          });
+      }
+  })();
