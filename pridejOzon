@@ -38,7 +38,7 @@
               let rokMatch = "";
               let titelMatch = "";
 
-              titelMatch = text.match(/(.*)/);
+              titelMatch = text.match(/(.+)/)[0];
               putTitel.value = titelMatch;
               console.log("titelMatch", autorMatch);
 
