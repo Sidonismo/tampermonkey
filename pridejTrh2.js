@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         pridejTrh
+// @name         pridejTrh2
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
@@ -38,7 +38,7 @@
               let rokMatch = "";
               let titelMatch = "";
 
-              titelMatch = text.match(/(.*)/);
+              titelMatch = text.match(/(.+)/);
               putTitel.value = titelMatch[0];
 
               //AUTOR
@@ -52,8 +52,8 @@
               console.log("autorMatch", autorMatch);
 
               //STRAN
-              if (text.match(/(?<=stran\n\t*\n*)\d+/gimu)) {
-                  stran = text.match(/(?<=stran\n\t*\n*)\d+/gimu);
+              if (text.match(/(?<=stran\r\n).*/gimu)) {
+                  stran = text.match(/(?<=stran\r\n).*/gimu);
                   putStran.value = stran;
                   console.log("stran",stran);
               }
@@ -68,9 +68,9 @@
               }
 
               //ROK
-              if (text.match(/(?<=rok vydání\n\t*\n*)\d+/gimu)) {
-                console.log(text.match(/(?<=rok vydání.*)\d+/gimu));
-                rokMatch = text.match(/(?<=rok vydání\n\t*\n*)\d+/gimu);
+              if (text.match(/(?<=rok vydání\r\n).*/gimu)) {
+
+                rokMatch = text.match(/(?<=rok vydání\r\n).*/gimu);
                 if (rokMatch.lenght > 1) {
                     putRok.value = rokMatch[0];
                 } else {
