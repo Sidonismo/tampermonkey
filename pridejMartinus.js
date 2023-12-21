@@ -29,8 +29,6 @@
           navigator.clipboard
             .readText()
             .then((text) => {
-              text = text.replace(/^\n/, '');
-              text.replace(/(\r\n|\r)/gm, "");
               console.log(text);
               let autorMatch = '';
               let stran = '';
@@ -40,32 +38,29 @@
 
               titelMatch = text.match(/.+\r\n.+\r\n.*/gm);
               console.log('titelMatch',titelMatch);
+              autorMatch = titelMatch[0].match(/(?<=.*\r\n).+/gimu);
+              putAutor.value = autorMatch;
+              titelMatch = text.match(/.+\r\n/);
               titelMatch = titelMatch[0].replaceAll("\n", " ");
               console.log('titelMatch',titelMatch);
               putTitel.value = titelMatch;
 
 
+
+
               //STRAN
-              if (text.match(/(?<=POČET STRAN.*\r\n)\d+/gimu)) {
-                  stran = text.match(/(?<=POČET STRAN.*\r\n)\d+/gimu);
+              if (text.match(/\d{1,4}(?=.stran)/gimu)) {
+                  stran = text.match(/\d{1,4}(?=.stran)/gimu);
                   putStran.value = stran;
               }
 
-              //ISBN
-              if (text.match(/(?<=ISBN.*\r\n)\d+([xX])*/gimu)) {
-                isbnMatch = text.match(/(?<=ISBN.*\r\n)\d+([xX])*/gimu).join();
-                console.log("isbnMatch",isbnMatch);
-                isbnMatch = isbnMatch.replaceAll(',', "");
-                isbnMatch = isbnMatch.replaceAll('-', '');
-                isbnMatch = isbnMatch.replaceAll('-', '');
-                putIsbn.value = isbnMatch;
-                console.log("isbnMatch",isbnMatch);
-              }
 
               //ROK
-              if (text.match(/(?<=ROK VYDÁNÍ.*\r\n)\d+/gimu)) {
-                rokMatch = text.match(/(?<=ROK VYDÁNÍ.*\r\n)\d+/gimu);
-                if (rokMatch.lenght > 1) {
+              if (text.match(/(?<=.*)\d{4}/gimu)) {
+                rokMatch = text.match(/(?<=.*)\d{4}/gimu);
+                  console.log('rok',rokMatch);
+                  console.log('delka',rokMatch.length);
+                if (rokMatch.length > 0) {
                     putRok.value = rokMatch[0];
                 } else {
                     putRok.value = rokMatch;
