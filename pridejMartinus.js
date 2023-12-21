@@ -52,6 +52,9 @@
               if (text.match(/\d{1,4}(?=.stran)/gimu)) {
                   stran = text.match(/\d{1,4}(?=.stran)/gimu);
                   putStran.value = stran;
+              } else if (text.match(/(?<=.*\d{4}.*\r\n.*)\d{1,4}/g)){
+                  stran = text.match(/(?<=.*\d{4}.*\r\n.*)\d{1,4}/g)[0];
+                   putStran.value = stran;
               }
 
 
