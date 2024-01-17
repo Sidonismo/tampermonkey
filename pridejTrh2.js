@@ -59,12 +59,10 @@
               }
 
               //ISBN
-              if (text.match(/(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/gm)) {
-                isbnMatch = text.match(/(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/gm).join();
-                isbnMatch = isbnMatch.replaceAll(',', "");
-                isbnMatch = isbnMatch.replaceAll('-', '');
-                isbnMatch = isbnMatch.replaceAll('-', '');
-                putIsbn.value = isbnMatch;
+              if (text.match(/(?<=ISBN\r\n).*/gimu)) {
+                isbnMatch = text.match(/(?<=ISBN\r\n\t+\r\n).*/gimu);
+                  console.log("ISBN",isbnMatch);
+                putIsbn.value = isbnMatch[0].trim();
               }
 
               //ROK
